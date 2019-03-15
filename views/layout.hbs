@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{domain}}{{title}}</title>
+
+    <link rel="stylesheet" href="../public/styles/style.css">
+    <link rel="icon" href="../public/res/favicon.jpg" type="image/jpg">
+    <script type="text/javascript" src="../public/js/main.js"></script>
+
+    <link rel="stylesheet" href="../public/spectre/spectre-0.5.8/dist/spectre.min.css">
+    <link rel="stylesheet" href="../public/spectre/spectre-0.5.8/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="../public/spectre/spectre-0.5.8/dist/spectre-icons.min.css">
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <div class="container">
+      <div class="columns">
+        <div class="column col-9 col-mx-auto">
+
+          <header>
+            {{>header}}
+          </header>
+          <main>
+            {{{body}}}
+          </main>
+          <footer>
+            {{>footer}}
+          </footer>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

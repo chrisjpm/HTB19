@@ -1,0 +1,23 @@
+{
+  "name": "htb19",
+  "version": "0.0.1",
+  "description": "htb19",
+  "engines": {
+    "node": "8.11.3",
+    "npm": "6.1.0"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "diet": "^0.16.0",
+    "express": "^4.16.3",
+    "express-hbs": "^1.0.4",
+    "http": "0.0.0",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7"
+  },
+  "author": "Chris Perceval-Maxwell"
+}
