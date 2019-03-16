@@ -98,6 +98,9 @@ footer {
     opacity: 1;
     padding-bottom: 35px;
   }
+  .card-footer {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 801px) and (max-width: 2000px) {
@@ -106,5 +109,8 @@ footer {
   }
   div#footer-logo {
     opacity: 0;
+  }
+  .card-footer {
+    visibility: visible;
   }
 }
