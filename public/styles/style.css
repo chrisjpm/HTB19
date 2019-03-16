@@ -18,6 +18,9 @@ a.button {
 .text-med {
   color: #66758c;
 }
+p#title {
+  font-style: italic;
+}
 
 /*design*/
 body {
