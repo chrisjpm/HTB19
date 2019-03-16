@@ -12,32 +12,51 @@ a {
 p#copy {
   color: #cccdd2;
 }
+a.button {
+  color: #fff !important;
+}
 
 /*design*/
 body {
-  background: #f7fafc !important;
+  background: #f8f8f9 !important;
 }
 .divider {
   border-top: .05rem solid #e9eaea !important;
 }
-img#footer-logo {
+div.footer-logo img{
   width: 100%;
+  opacity: 0.1;
+}
+section#header-logo a img {
+  padding-top: 3px;
+  height: 4vh;
+}
+#header-logo {
+  right: 12%;
+  top: 5%;
+  transform: translate(-50%, -50%);
 }
 
 /*layout*/
 .landing {
-  height: calc(100vh - 238px);  /* 100vh - ()(height of elem)/2) */
+  height: 100vh;  /* 100vh - ()(height of elem)/2) */
   width: 100%;
-  margin-top: calc(50vh - 238px);  /* 50vh - ()(height of elem)/2) */
+  margin-top: 40px;  /* 50vh - ()(height of elem)/2) */
 }
-.content {
-  margin: 100px 0;
+.section {
+  padding: 100px 0;
+}
+header {
+  padding: 20px 0;
 }
 footer {
   padding-bottom: 20px;
 }
 .footer-content {
   margin-top: 65px;
+}
+.footer-section {
+  padding-bottom: 35px;
 }
 /* .vcenter {
   position: absolute;
@@ -62,4 +81,23 @@ footer {
   -webkit-box-shadow: 0px 7px 66px -5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 7px 66px -5px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 7px 66px -5px rgba(0, 0, 0, 0.75);
+}
+
+@media screen and (min-width: 0px) and (max-width: 800px) {
+  div#footer-logo-xl {
+    opacity: 0;
+  }
+  div#footer-logo {
+    opacity: 1;
+    padding-bottom: 35px;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 2000px) {
+  div#footer-logo-xl {
+    opacity: 1;
+  }
+  div#footer-logo {
+    opacity: 0;
+  }
 }
