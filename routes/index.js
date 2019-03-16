@@ -7,12 +7,60 @@ var Jimp = require('jimp');
 var gm = require('gm');
 var router = express.Router();
 var gfycat = new Gfycat({clientId: "2_ObQOfp", clientSecret: "rQsWNDcmEXsXh2uiy5kkR0TKv5TiX63Qyhp3c4_F2JqF20avE53f6wm2tinq2bHt"});
+const speech = require('@google-cloud/speech');
+
+
+const Nexmo = require('nexmo');
+
+const client = new speech.SpeechClient();
+
+
+
+const file = fs.readFileSync('public/recordings/meme.raw');
+const audioBytes = file.toString('base64');
+console.log("audiobytes:"+  audioBytes);
+// The audio file's encoding, sample rate in hertz, and BCP-47 language code
+const audio = {
+  content: audioBytes,
+};
+const config = {
+  encoding: 'LINEAR16',
+  sampleRateHertz: 16000,
+  languageCode: 'en-US'
+};
+const requestdd = {
+  audio: audio,
+  config: config
+};
+
+client
+.recognize(requestdd)
+.then(data => {
+const response = data[0];
+const transcription = response.results
+  .map(result => result.alternatives[0].transcript)
+  .join('\n');
+console.log(`Transcription: ${transcription}`);
+})
+.catch(err => {
+console.error('ERROR:', err);
+});
+
+
+
+
+const nexmo = new Nexmo({
+  apiKey: "fe39c276",
+  apiSecret: "DHxVs4FSg5VVRUNv",
+  applicationId: "9aec4610-f167-4f70-a6b9-a11e0521df56",
+  privateKey: "private.key"
+}, {debug: true});
 
 
 gfycat.authenticate((err, data) => {
   //Your app is now authenticated
   console.log('token', gfycat.token);
-})
+});
 
 router.get('/', function(req, res, next) {
   res.render('index', { domain: '1-800-MEME', layout: 'layout.hbs' });
@@ -26,15 +74,16 @@ const onInboundCall = (request, response) => {
   const ncco = [
     {
       action: 'talk',
-      text: 'What ma dawg, hit me at the tone then pound that hash brutha'
+      text: 'Whats up ma dawg, hit me at the tone then pound that hash brutha'
     },
     {
       action: 'record',
       endOnKey : '#',
       beepStart: 'true',
       eventUrl: [
-        `${request.protocol}://${request.get('host')}/recording`
-      ]
+        `https://fded1e6e.ngrok.io/recording`
+        ],
+      eventMethod: 'GET'
     },
     {
       action: 'talk',
@@ -47,15 +96,71 @@ const onInboundCall = (request, response) => {
 
 
 const onRecording = (request, response) => {
-    
-  const recording_url = request.body.recording_url
-  console.log(`Recording URL = ${recording_url}`)
+  console.log(request.query);
+  const recording_url = request.query.recording_url;
+  const recording_uuid = request.query.recording_uuid;
+  console.log(`Recording URL = ${recording_url}`);
 
-  response.status(204).send()
+  nexmo.files.save(recording_url, 'public/recordings/'+recording_uuid+'.mp3', (err, res) => {
+      if(err) { console.error(err); }
+      else {
+          // Reads a local audio file and converts it to base64
+            const file = fs.readFileSync('public/recordings/'+recording_uuid+'.mp3');
+            const audioBytes = file.toString('base64');
+            console.log("audiobytes:"+  audioBytes);
+            // The audio file's encoding, sample rate in hertz, and BCP-47 language code
+            const audio = {
+              content: audioBytes,
+            };
+            const config = {
+              encoding: 'LINEAR16',
+              sampleRateHertz: 16000,
+              languageCode: 'en-US'
+            };
+            const request = {
+              audio: audio,
+              config: config
+            };
+
+            // Detects speech in the audio file
+
+            //const client = new speech.SpeechClient(function(x){
+                // client.recognize(request, function(err,data){
+                //     if(err){
+                //         console.error('ERROR:', err);
+                //     }
+                //     const response = data[0];
+                //     const transcription = response.results
+                //       .map(result => result.alternatives[0].transcript)
+                //       .join('\n');
+                //     console.log(`Transcription: ${transcription}`);
+                // });
+            //});
+
+        client
+          .recognize(request)
+          .then(data => {
+            const response = data[0];
+            const transcription = response.results
+              .map(result => result.alternatives[0].transcript)
+              .join('\n');
+            console.log(`Transcription: ${transcription}`);
+          })
+          .catch(err => {
+            console.error('ERROR:', err);
+          });
+
+
+      }
+    });
+
+  response.status(204).send();
 }
 
+
+
 router.get('/answer', onInboundCall);
-router.post('/recording', onRecording);
+router.get('/recording', onRecording);
 
 
 

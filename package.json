@@ -10,6 +10,7 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "@google-cloud/speech": "^2.3.0",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "diet": "^0.16.0",
