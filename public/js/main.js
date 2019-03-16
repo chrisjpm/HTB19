@@ -20,6 +20,13 @@ $(document).ready(function() {
     $("div.tweet-ins").removeClass('active');
   });
 
+  $("button[name='gif-ins']").on("click", function() {
+    $("div.gif-ins").addClass('active');
+  });
+  $("a[href='#close']").on("click", function() {
+    $("div.gif-ins").removeClass('active');
+  });
+
   $("button[name='deepfry-ins']").on("click", function() {
     $("div.deepfry-ins").addClass('active');
   });
