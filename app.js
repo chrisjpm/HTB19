@@ -10,7 +10,7 @@ var diet = require('diet');
 var index = require('./routes/index');
 
 var app = express();
-var port = 80;
+var port = (process.env.PORT || 80);
 var server = http.createServer(app);
 
 app.use('/', index);
