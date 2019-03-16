@@ -3,11 +3,92 @@
   <div class="section">
     <div class="empty shadow-shallow">
       <p class="empty-title h1">1-800-MEME</p>
-      <p class="empty-title h4">Dial a meme!</p>
+      <p class="empty-title h5">Dial a meme!</p>
     </div>
 
     <div class="section" id="instructions-wrapper">
-        <h1>instructions</h1>
+      <h2 class="center-txt text-med">Instructions</h2>
+      <br>
+
+      <div class="columns">
+        <div class="column col-6">
+          <button type="button" name="classic-ins" class="btn btn-block shadow-shallow">Classic Meme</button>
+          <br>
+          <button type="button" name="insta-ins" class="btn btn-block shadow-shallow">Instagram Meme</button>
+          <br>
+          <button type="button" name="tweet-ins" class="btn btn-block shadow-shallow">Fake Tweet</button>
+        </div>
+        <div class="column col-6">
+          <button type="button" name="deepfry-ins" class="btn btn-block shadow-shallow">Deepfired Meme</button>
+          <br>
+          <button type="button" name="content-ins" class="btn btn-block shadow-shallow">C-A Scaled Meme</button>
+        </div>
+      </div>
+
+      <div class="modal classic-ins" id="modal-id">
+        <a href="#close" class="modal-overlay" aria-label="Close"></a>
+        <div class="modal-container">
+          <div class="modal-header">
+            <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+            <div class="modal-title h5">Classic Meme</div>
+          </div>
+          <div class="modal-body">
+            <div class="content">
+              <blockquote>
+                1. Say "Classic".
+              </blockquote>
+              <blockquote>
+                2. Say what you want the 'Top Text' to read.
+              </blockquote>
+              <blockquote>
+                3. Say what you want the 'Bottom Text' to read.
+              </blockquote>
+              <blockquote>
+                4. Say what you want image you want.
+              </blockquote>
+              <blockquote>
+                5. Say your name (or whatever you want to be seen as!).
+              </blockquote>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary"><a class="button" href="https://i.imgflip.com/276upe.jpg" target="_blank">See an exmaple!</a></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal insta-ins" id="modal-id">
+        <a href="#close" class="modal-overlay" aria-label="Close"></a>
+        <div class="modal-container">
+          <div class="modal-header">
+            <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+            <div class="modal-title h5">Instagram Meme</div>
+          </div>
+          <div class="modal-body">
+            <div class="content">
+              <blockquote>
+                1. Say "Instagram".
+              </blockquote>
+              <blockquote>
+                2. Say what you want the 'Top Text' to read.
+              </blockquote>
+              <blockquote>
+                3. Say "Funny" for 'laughing emoji' OR "Sad" for the 'crying emoji'.
+              </blockquote>
+              <blockquote>
+                4. Say what you want image you want.
+              </blockquote>
+              <blockquote>
+                5. Say your name (or whatever you want to be seen as!).
+              </blockquote>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary"><a class="button" href="http://www.lovethispic.com/uploaded_images/329728-Lmao-Who-Did-This-.jpg" target="_blank">See an exmaple!</a></button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -25,7 +106,7 @@
       <p class="empty-title h5">Gallery!</p>
       <p class="empty-subtitle">Browse what everyone is dialing in for!</p>
       <div class="empty-action">
-        <button href="#" class="btn btn-primary">Try it yourself!</button>
+        <button class="btn btn-primary"><a href="#instructions-wrapper" class="button">Try it yourself!</a></button>
       </div>
     </div>
 

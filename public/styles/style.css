@@ -15,6 +15,9 @@ p#copy {
 a.button {
   color: #fff !important;
 }
+.text-med {
+  color: #66758c;
+}
 
 /*design*/
 body {
@@ -44,10 +47,11 @@ section#header-logo a img {
   margin-top: 40px;  /* 50vh - ()(height of elem)/2) */
 }
 .section {
-  padding: 100px 0;
+  padding: 75px 0;
 }
 header {
   padding: 20px 0;
+  z-index: 1;
 }
 footer {
   padding-bottom: 20px;
