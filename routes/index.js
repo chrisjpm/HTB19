@@ -224,6 +224,48 @@ function captionImg(img, caption, top, callback){
            });
 }
 
+//---------------------------
+//bing image search testing |
+//---------------------------
+'use strict';
+const Search = require('azure-cognitiveservices-imagesearch');
+const CognitiveServicesCredentials = require('ms-rest-azure').CognitiveServicesCredentials;
+
+let serviceKey = "";
+// resource group: container
+// resource id: /subscriptions/d69f7527-d7d3-4fda-a954-467594fe9981/resourceGroups/container/providers/Microsoft.CognitiveServices/accounts/1-800-MEME
+// key 1 f148ccc669144780a3ce3bee25d7f8a0
+// key 2 21df632fbb3042769663f4a6532954cd
+// subscrioption id d69f7527-d7d3-4fda-a954-467594fe9981
+
+
+//the search term for the request
+let searchTerm = "why you no";
+
+//instantiate the image search client
+let credentials = new CognitiveServicesCredentials(serviceKey);
+let imageSearchApiClient = new Search.ImageSearchAPIClient(credentials);
+
+//a helper function to perform an async call to the Bing Image Search API
+const sendQuery = async () => {
+    return await imageSearchApiClient.imagesOperations.search(searchTerm);
+};
+
+sendQuery().then(imageResults => {
+    if (imageResults == null) {
+      console.log("No image results were found.");
+    } else {
+      console.log(`Total number of images returned: ${imageResults.value.length}`);
+      let firstImageResult = imageResults.value[0];
+      //display the details for the first image result. After running the application,
+      //you can copy the resulting URLs from the console into your browser to view the image.
+      console.log(`Total number of images found: ${imageResults.value.length}`);
+      console.log(`Copy these URLs to view the first image returned:`);
+      console.log(`First image thumbnail url: ${firstImageResult.thumbnailUrl}`);
+      console.log(`First image content url: ${firstImageResult.contentUrl}`);
+    }
+})
+.catch(err => console.error(err))
 
 
 module.exports = router;
