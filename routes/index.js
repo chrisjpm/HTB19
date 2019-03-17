@@ -37,7 +37,7 @@ gfycat.authenticate((err, data) => {
 });
 
 router.get('/', function(req, res, next) {
-  res.render('index', { domain: '1-800-MEME', layout: 'layout.hbs', memes: prodReadyMemes, username: name});
+  res.render('index', { domain: '1-800-MEME', layout: 'layout.hbs', memes: prodReadyMemes, username: "memelordxd"});
 });
 
 
