@@ -6,8 +6,15 @@ var Jimp = require('jimp');
 
 router.get('/', function(req, res, next) {
 
+  res.render('test', {
+    domain: '1-800-MEME',
+    layout: 'layout.hbs'
+  });
+});
+
+function deepFry(upload) {
   Jimp.read('public/res/noise.jpg', (err, noise) => {
-    Jimp.read('public/res/iloveit.jpg', (err, img) => {
+    Jimp.read('public/res/' + upload, (err, img) => {
       if (err) throw err;
       img
         .quality(90)
@@ -21,13 +28,6 @@ router.get('/', function(req, res, next) {
         .write('public/res/iloveit2.jpg'); // save
     });
   });
-
-  res.render('test', {
-    domain: '1-800-MEME',
-    layout: 'layout.hbs'
-  });
-});
-
-
+}
 
 module.exports = router;
