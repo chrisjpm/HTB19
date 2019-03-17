@@ -8,12 +8,14 @@ var cookieParser = require('cookie-parser');
 var diet = require('diet');
 
 var index = require('./routes/index');
+var test = require('./routes/test');
 
 var app = express();
 var port = (process.env.PORT || 80);
 var server = http.createServer(app);
 
 app.use('/', index);
+app.use('/test', test);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
