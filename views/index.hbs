@@ -229,7 +229,7 @@
         <i class="icon icon-2x icon-photo"></i>
       </div>
       <p class="empty-title h5">Gallery!</p>
-      <p class="empty-subtitle">Browse what everyone is dialing in for! (Only most recent 12)</p>
+      <p class="empty-subtitle">Browse what everyone is dialing in for! (Only most recent 4)</p>
       <div class="empty-action">
         <button class="btn btn-primary"><a href="#instructions-wrapper" class="button">Try it yourself!</a></button>
       </div>
@@ -237,101 +237,24 @@
 
     <div id="gallery-container">
       <div class="columns">
-
-        <div class="column col-4">
-
+          <div class="column col-12">
+          {{#each prodReadyMemes}}
           <div class="card">
             <div class="card-image">
-              <img src="https://i.ytimg.com/vi/GVvIrf2AcB8/maxresdefault.jpg" class="img-responsive">
+              <img src={{this}}+"["{{@index}}+"].image" class="img-responsive">
             </div>
             <div class="card-footer">
               <span class="label label-rounded label-turq">memelordxd</span>
             </div>
           </div>
-
+          {{else}}
           <div class="card">
-            <div class="card-image">
-              <img src="https://i.redd.it/7idpkayz1kbz.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
+            <div class="card-body">
+              Awaiting submission!
             </div>
           </div>
-
-          <div class="card">
-            <div class="card-image">
-              <img src="http://www.lovethispic.com/uploaded_images/329728-Lmao-Who-Did-This-.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
-            </div>
-          </div>
-
+          {{/each}}
         </div>
-
-        <div class="column col-4">
-
-          <div class="card">
-            <div class="card-image">
-              <img src="https://i.redd.it/7idpkayz1kbz.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-image">
-              <img src="https://i.ytimg.com/vi/GVvIrf2AcB8/maxresdefault.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
-            </div>
-          </div>
-
-
-          <div class="card">
-            <div class="card-image">
-              <img src="http://www.lovethispic.com/uploaded_images/329728-Lmao-Who-Did-This-.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="column col-4">
-
-          <div class="card">
-            <div class="card-image">
-              <img src="http://www.lovethispic.com/uploaded_images/329728-Lmao-Who-Did-This-.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-image">
-              <img src="https://i.ytimg.com/vi/GVvIrf2AcB8/maxresdefault.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-image">
-              <img src="https://i.redd.it/7idpkayz1kbz.jpg" class="img-responsive">
-            </div>
-            <div class="card-footer">
-              <span class="label label-rounded label-turq">memelordxd</span>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </div>
   </div>
