@@ -111,9 +111,11 @@ const onRecordingType = (request, response) => {
               console.log(err);
             else
               console.log(JSON.stringify(res, null, 2));
-              memesDict[conversation_uuid].type = res.results[0].alternatives[0].transcript.replace(" ","");
+              if(res.results.length >= 1){
+                  memesDict[conversation_uuid].type = res.results[0].alternatives[0].transcript.replace(" ","");
 
-              maybeSearch(conversation_uuid);
+                  maybeSearch(conversation_uuid);
+              }
           });
 
       }
@@ -143,9 +145,11 @@ const onRecordingSearch = (request, response) => {
               console.log(err);
             else
               console.log(JSON.stringify(res, null, 2));
-              memesDict[conversation_uuid].search = res.results[0].alternatives[0].transcript;
+              if(res.results.length >= 1){
+                  memesDict[conversation_uuid].search = res.results[0].alternatives[0].transcript;
 
-              maybeSearch(conversation_uuid);
+                  maybeSearch(conversation_uuid);
+              }
           });
 
       }
@@ -153,8 +157,6 @@ const onRecordingSearch = (request, response) => {
 
   response.status(204).send();
 }
-
-
 
 
 
@@ -191,37 +193,23 @@ function getGif(search,callback){
     });
 }
 
-function captionImg(img, caption, top, callback){
-    // Jimp.read(img, function(err, image){
-    //       if (err) throw err;
-    //       console.log("1");
-    //       Jimp.loadFont(Jimp.FONT_SANS_32_BLACK, function(font){
-    //           // load font from .fnt file
-    //           console.log(image.getExtension())
-    //           //x = image.bitmap.width / 2;
-    //           //y = 0;
-    //
-    //           x = 300;
-    //           y = 300;
-    //           if(!top){
-    //               //y = image.bitmap.height - 20;
-    //           }
-    //           filename = new Date().getTime() + "." + image.getExtension();
-    //           console.log("2");
-    //           image.print(font, x, y, {
-    //                text: caption,
-    //                alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-    //                alignmentY: Jimp.VERTICAL_ALIGN_MIDDLE
-    //            }).write("public/imgs/"+filename, function(){callback(filename)});
-    //         });
-    //     });
-        filename = new Date().getTime() + "." + img.split(".")[1];
-        console.log(filename);
-        gm(img).drawText(0,0,caption).write("public/imgs/"+filename,
-            function(err){
-                console.log(err);
-               callback(filename);
-           });
+
+function deepFry(upload) {
+  Jimp.read('public/res/noise.jpg', (err, noise) => {
+    Jimp.read('public/res/' + upload, (err, img) => {
+      if (err) throw err;
+      img
+        .quality(90)
+        .contrast(0.6)
+        .brightness(-0.1)
+        .posterize(6)
+        .color([
+          { apply: 'saturate', params: [60] }
+        ])
+        .convolute([[-2, -1, 0], [-1, 1, 1], [0, 1, 2]])
+        .write('public/res/iloveit2.jpg'); // save
+    });
+  });
 }
 
 
