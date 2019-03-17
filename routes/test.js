@@ -6,9 +6,9 @@ var Jimp = require('jimp');
 
 router.get('/', function(req, res, next) {
 
-  Jimp.read('public/res/noise.jpg', (err, img) => {
+  Jimp.read('public/res/iloveit.jpg', (err, img) => {
     if (err) throw err;
-    Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
+    Jimp.loadFont('public/fonts/Impact.fnt').then(font => {
       if (err) throw err;
       img
         .print(
@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
             );
           }
         )
-        .write('public/res/noise2.jpg');
+        .write('public/res/iloveit3.jpg');
     });
   });
 
@@ -65,7 +65,7 @@ function deepFry(upload) {
           [-1, 1, 1],
           [0, 1, 2]
         ])
-        .write('public/res/iloveit2.jpg'); // save
+        .write('public/res/' + upload); // save
     });
   });
 }

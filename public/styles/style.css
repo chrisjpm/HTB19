@@ -21,6 +21,20 @@ a.button {
 p#title {
   font-style: italic;
 }
+.turq-txt {
+  color: #1cbade;
+}
+a#phone {
+  text-decoration: underline;
+}
+a#phone:hover {
+  color: #1695b3;
+  text-decoration: underline;
+}
+.sub-txt {
+  font-size: 0.6rem;
+  font-style: italic;
+}
 
 /*design*/
 body {
@@ -41,6 +55,10 @@ section#header-logo a img {
   right: 12%;
   top: 5%;
   transform: translate(-50%, -50%);
+}
+.label-turq {
+  background: #1cbade !important;
+  color: #fff !important;
 }
 
 /*layout*/
