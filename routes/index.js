@@ -7,44 +7,32 @@ var Jimp = require('jimp');
 var gm = require('gm');
 var router = express.Router();
 var gfycat = new Gfycat({clientId: "2_ObQOfp", clientSecret: "rQsWNDcmEXsXh2uiy5kkR0TKv5TiX63Qyhp3c4_F2JqF20avE53f6wm2tinq2bHt"});
-const speech = require('@google-cloud/speech');
 
 
 const Nexmo = require('nexmo');
 
-const client = new speech.SpeechClient();
 
-
-
-const file = fs.readFileSync('public/recordings/meme.raw');
-const audioBytes = file.toString('base64');
-console.log("audiobytes:"+  audioBytes);
-// The audio file's encoding, sample rate in hertz, and BCP-47 language code
-const audio = {
-  content: audioBytes,
-};
-const config = {
-  encoding: 'LINEAR16',
-  sampleRateHertz: 16000,
-  languageCode: 'en-US'
-};
-const requestdd = {
-  audio: audio,
-  config: config
-};
-
-client
-.recognize(requestdd)
-.then(data => {
-const response = data[0];
-const transcription = response.results
-  .map(result => result.alternatives[0].transcript)
-  .join('\n');
-console.log(`Transcription: ${transcription}`);
-})
-.catch(err => {
-console.error('ERROR:', err);
+var SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
+var speechToText = new SpeechToTextV1({
+  iam_apikey: "Ltpj8UasrJN8RoKLZVgykYZ6G-xN1zU7O9oRLPC5uYSp",
+  url: 'https://gateway-lon.watsonplatform.net/speech-to-text/api'
 });
+
+
+
+var params = {
+  // From file
+  audio: fs.createReadStream('public/recordings/meme.mp3'),
+  content_type: 'audio/mp3; rate=44100'
+};
+
+speechToText.recognize(params, function(err, res) {
+  if (err)
+    console.log(err);
+  else
+    console.log(JSON.stringify(res, null, 2));
+});
+
 
 
 
